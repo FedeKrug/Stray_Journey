@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Rotation : MonoBehaviour
+{
+    [SerializeField] private float rotateSpeed;
+    void Awake()
+    {
+        
+    }
+
+   
+    void Update()
+    {
+        transform.Rotate (0,0, rotateSpeed * Time.deltaTime);
+    }
+}
