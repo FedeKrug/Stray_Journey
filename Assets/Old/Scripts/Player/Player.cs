@@ -204,3 +204,5 @@ public class Player : MonoBehaviour
         spriteR.color = normalColor;
 	}
 }
+
+
