@@ -21,14 +21,6 @@ public class Goal : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         Player playerRef = collision.GetComponent<Player>();
-        if (playerRef != null)
-		{
-            
-                sceneLoaderRef.PassLevel();
-			
-            //winScreen.SetActive(true);
-            //backgroundAudio.Stop();
-
-		}
+        
 	}
 }

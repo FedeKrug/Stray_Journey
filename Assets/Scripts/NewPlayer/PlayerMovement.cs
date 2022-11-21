@@ -15,17 +15,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private string horizontalAxis;
     [SerializeField] private string verticalAxis;
 
-    private Rigidbody2D rb2d;
-    private Animator anim;
-    [SerializeField] private Animator fireAnim;
-    private AudioSource aSource;
-    private SpriteRenderer spriteR;
-   // [SerializeField] private List<AudioClip> audioClips;
-    private Vector2 moveInput;
+    private Rigidbody2D _rb2d;
+    private Animator _anim;
+    [SerializeField] private Animator _fireAnim;
+    private AudioSource _aSource;
+    private SpriteRenderer _spriteR;
+    private Vector2 _moveInput;
 
-    void Start()
+    void Awake()
     {
-        
+        _rb2d = GetComponent<Rigidbody2D>();
     }
 
   
@@ -34,29 +33,26 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxis(horizontalAxis);
         float moveY = Input.GetAxisRaw(verticalAxis);
 
-        moveInput = new Vector2(moveX, moveY).normalized;
-
-
-
-        // transform.position += transform.up * moveY *speed * Time.deltaTime;
+        _moveInput = new Vector2(moveX, moveY).normalized;
+        
         transform.Rotate(0, 0, moveX * rotateSpeed * Time.deltaTime);
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             speed = boostSpeed;
-            fireAnim.SetBool("inBoost", true);
+            _fireAnim.SetBool("inBoost", true);
             rotateSpeed = maxRotateSpeed;
         }
 
         else
         {
             speed = baseSpeed;
-            fireAnim.SetBool("inBoost", false);
+            _fireAnim.SetBool("inBoost", false);
             rotateSpeed = baseRotateSpeed;
         }
     }
     private void FixedUpdate()
     {
-        rb2d.AddForce(transform.up * moveInput.y * speed);
+        _rb2d.AddForce(transform.up * _moveInput.y * speed);
     }
 }
