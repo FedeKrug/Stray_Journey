@@ -4,28 +4,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField,Range(-50,50)] private float offset;
-    [SerializeField] private Transform target;
+	[SerializeField] private Transform _player;
+	[SerializeField, Range(0,5)] private float dampTime;
 
-    Vector3 auxVector;
-    void Awake()
-    {
-            
-    }
+	private Vector3 _cameraPos;
+	private Vector3 velocity = Vector3.zero;
 
-   
-    void Update()
-    {
-        if (target != null)
-		{
-             this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + offset, this.transform.position.z);
-         
-        }
-    }
-    void DelayMovement()
+	private void Update()
 	{
-        auxVector = Vector2.MoveTowards(transform.position, target.position, offset * Time.deltaTime);
-        auxVector.z = this.transform.position.z;
-        this.transform.position = auxVector;
-    }
+		_cameraPos = new Vector3(_player.position.x, _player.position.y, -10);
+		transform.position = Vector3.SmoothDamp(gameObject.transform.position, _cameraPos, ref velocity, dampTime);
+	}
 }

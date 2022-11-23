@@ -328,10 +328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b500b872afba942a14432e1b105e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 20
-  boostSpeed: 50
-  baseRotateSpeed: 360
-  maxRotateSpeed: 720
+  baseSpeed: 100
+  boostSpeed: 250
+  baseRotateSpeed: -360
+  maxRotateSpeed: -720
   horizontalAxis: Horizontal
   verticalAxis: Vertical
   _fireAnim: {fileID: 0}
@@ -394,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130029667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3136024, y: -12.093016, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -413,7 +413,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -460,8 +460,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6e73fdacb8e2f4da91475657126b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 8
-  target: {fileID: 0}
+  _player: {fileID: 130029670}
+  dampTime: 0.8
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
