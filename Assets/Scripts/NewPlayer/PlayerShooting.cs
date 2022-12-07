@@ -8,40 +8,54 @@ public class PlayerShooting : MonoBehaviour
 	[SerializeField] private float _maxTimeRate;
 	[SerializeField] private ShootType _shootType;
 	private float _timeRate;
-	void Awake()
-	{
-	}
-
+	
 
 	void Update()
 	{
 		_timeRate -= Time.deltaTime;
-		if (_shootType == ShootType.Automatic)
+		#region ShootTypes with Enums
+		switch (_shootType)
 		{
-			if (Input.GetKey(KeyCode.C))
-			{
-				if (_timeRate <= 0)
+			case ShootType.ArrowType:
+
+				if (Input.GetKeyUp(KeyCode.C))
 				{
 					_timeRate = _maxTimeRate;
 					EventManager.instance.normalShootingEvent.Invoke(_bulletGens, _bullet);
 				}
-			}
-		}
+				break;
 
-		if (_shootType == ShootType.Manual)
-		{
+			case ShootType.Automatic:
+				if (Input.GetKey(KeyCode.C))
+				{
+					if (_timeRate <= 0)
+					{
+						_timeRate = _maxTimeRate;
+						EventManager.instance.normalShootingEvent.Invoke(_bulletGens, _bullet);
+					}
+				}
+				break;
 
-			if (Input.GetKeyDown(KeyCode.B))
-			{
-				_timeRate = _maxTimeRate;
-				EventManager.instance.normalShootingEvent.Invoke(_bulletGens, _bullet);
-			}
+			case ShootType.Manual:
+
+				if (Input.GetKeyDown(KeyCode.C))
+				{
+					_timeRate = _maxTimeRate;
+					EventManager.instance.normalShootingEvent.Invoke(_bulletGens, _bullet);
+				}
+				break;
+			
 		}
+		#endregion
+
 
 	}
 }
 public enum ShootType
 {
+	Automatic,
+	ArrowType,
 	Manual,
-	Automatic
+
+
 }

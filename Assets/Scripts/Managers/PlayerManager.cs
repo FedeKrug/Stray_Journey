@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
 	public static PlayerManager instance;
-	
+
 	#region Singleton and Awake
 	private void Awake()
 	{
-		if (instance==null)
+		if (instance == null)
 		{
 			instance = this;
 		}
@@ -32,14 +32,14 @@ public class PlayerManager : MonoBehaviour
 
 	#endregion
 
-	public void Shooting(List<GameObject> bulletGenerators,GameObject bullet)
+	public void Shooting(List<GameObject> bulletGenerators, GameObject bullet)
 	{
-		for (int i =0; i< bulletGenerators.Count; i ++)
+		for (int i = 0; i < bulletGenerators.Count; i++)
 		{
-			Debug.Log("Disparo");
 			if (bullet)
 			{
-			GameObject _bullet = Instantiate(bullet, bulletGenerators[i].transform.position, bulletGenerators[i].transform.rotation);
+				GameObject _bullet = Instantiate(bullet, bulletGenerators[i].transform.position, bulletGenerators[i].transform.rotation);
+				Debug.Log("Disparo");
 
 			}
 		}
