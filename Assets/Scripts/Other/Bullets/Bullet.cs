@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float damage;
-    [SerializeField, Range(0,250f)] private float speed;
+    [Range(0,250f)] public float speed;
     [SerializeField,Tooltip("Change damage " +
     "with a boost later"), Range(0,250f)] private float damageModifier;
     [Header("Destroying Bullets: ")]
@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb2d;
     [SerializeField] private Animator _anim;
     [SerializeField] private AudioSource _aSource;
-   
+    
 
 	private void Update()
 	{

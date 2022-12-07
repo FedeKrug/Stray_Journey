@@ -7,6 +7,7 @@ public class PlayerShooting : MonoBehaviour
 	[SerializeField] private GameObject _bullet;
 	[SerializeField] private float _maxTimeRate;
 	[SerializeField] private ShootType _shootType;
+	
 	private float _timeRate;
 	
 
