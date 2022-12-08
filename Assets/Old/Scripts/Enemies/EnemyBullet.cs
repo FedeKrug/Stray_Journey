@@ -18,16 +18,13 @@ public class EnemyBullet : MonoBehaviour
         aSource = GetComponent<AudioSource>();
     }
 
-   
-    void Update()
-    {
-        EnemyShoot();
-    }
 
-    public void EnemyShoot()
+	private void FixedUpdate()
 	{
         rb2d.MovePosition(transform.position + transform.right   * speed * Time.fixedDeltaTime);
-    }
+		
+	}
+	
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         Player playerRef = collision.GetComponent<Player>();

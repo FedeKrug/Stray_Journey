@@ -19,8 +19,12 @@ public class EventManager: MonoBehaviour
 		}
 	}
 	#endregion
-	public Shoot normalShootingEvent = new Shoot();
-	
+	public ShootEvent normalShootingEvent = new ShootEvent();
+	public ShootEvent specialShootingEvent = new ShootEvent();
+	public ShootEvent enemyShootingEvent = new ShootEvent();
+	public HealthEvent playerDamagedEvent = new HealthEvent();
+	public HealthEvent playerCuredEvent = new HealthEvent();
 }
 
-public class Shoot: UnityEvent <List<GameObject>, GameObject>{ }
+public class ShootEvent: UnityEvent <List<GameObject>, GameObject>{ } //1- de donde sale el disparo 2- cual es el disparo
+public class HealthEvent : UnityEvent<float> { }
