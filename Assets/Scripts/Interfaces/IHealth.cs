@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IHealth
 {
-	public void TakeDamage();
-	public void IncreaseHealth();
+	public void TakeDamage(float damage);
+	public void IncreaseHealth(float healthBooster);
+	public void CheckDeath();
 }

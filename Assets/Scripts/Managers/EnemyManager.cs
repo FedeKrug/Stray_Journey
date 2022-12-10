@@ -3,9 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Enemies;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IHealth
 {
+	[SerializeField] private FloatSO _enemyHealth;
 	
+	#region Singleton
+	public static EnemyManager instance;
+	private void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
+	#endregion
+
 	private void OnEnable()
 	{
 		EventManager.instance.enemyShootingEvent.AddListener(HandleEnemyShooting);	
@@ -28,6 +44,24 @@ public class EnemyManager : MonoBehaviour
 				Debug.Log("Disparo Enemigo");
 				//aplicar object pooling para mejor performance
 			}
+		}
+	}
+
+	public void TakeDamage(float damage)
+	{
+		_enemyHealth.value -= damage;
+	}
+
+	public void IncreaseHealth(float healthBooster)
+	{
+		_enemyHealth.value += healthBooster;
+	}
+
+	public void CheckDeath()
+	{
+		if (_enemyHealth.value <=0)
+		{
+			//evento de muerte
 		}
 	}
 }

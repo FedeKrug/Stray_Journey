@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-
+using Game.Player;
 
 namespace Game.Enemies
 {
@@ -10,7 +10,7 @@ namespace Game.Enemies
 		protected float timeRate;
 		[SerializeField] protected List<GameObject> bulletGens;
 		[SerializeField] protected GameObject bullet;
-
+		
 		private void Update()
 		{
 			timeRate -= Time.deltaTime;
@@ -31,9 +31,8 @@ namespace Game.Enemies
 
 		public void Attack()
 		{
-			//EventManager.instance.enemyShootingEvent.Invoke(bulletGens, bullet);
-			//Attack - disparos cuando esta el player esta en zona.
-			EnemyShooting(bulletGens, bullet);
+			EventManager.instance.enemyShootingEvent.Invoke(bulletGens, bullet); //esto funcionaria para las turret
+																				 //Attack - disparos cuando esta el player esta en zona.
 		}
 
 		public void SpecialAttack()
@@ -41,18 +40,17 @@ namespace Game.Enemies
 			//Special Attack - un ataque kamikaze.
 		}
 
-	public void EnemyShooting(List<GameObject> bulletGenerators, GameObject bullet)
-	{
-		for (int i = 0; i < bulletGenerators.Count; i++)
+		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			if (bullet)
+			if (collision.CompareTag("Player"))
 			{
-				GameObject _bullet = Instantiate(bullet, bulletGenerators[i].transform.position, bulletGenerators[i].transform.rotation);
-				Debug.Log("Disparo Enemigo");
-				//aplicar object pooling para mejor performance
+				PlayerManager.instance.TakeDamage(idleDamage);
 			}
 		}
 
-	}
+		public override void Death(EnemyHealth enemyHealth)
+		{
+			
+		}
 	}
 }

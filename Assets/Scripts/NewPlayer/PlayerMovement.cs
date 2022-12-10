@@ -61,6 +61,12 @@ namespace Game.Player
 			{
 				moveY = 0;
 			}
+
+			//if (Input.GetKeyDown(KeyCode.B))
+			//{
+			//	//Take Damage
+			//	PlayerManager.instance.TakeDamage(10);
+			//}
 		}
 		private void FixedUpdate()
 		{

@@ -1,36 +1,19 @@
+using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : Bullet
 {
-	[SerializeField, Range(-250, 250f)] private float speed;
-	public float enemyDamage;
-	public float timeToDestroyBullet;
-	Rigidbody2D rb2d;
-	Animator anim;
-	AudioSource aSource;
 
-	void Awake()
+	private void OnTriggerEnter2D(Collider2D other)
 	{
-		rb2d = GetComponent<Rigidbody2D>();
-		anim = GetComponent<Animator>();
-		aSource = GetComponent<AudioSource>();
-	}
-
-
-	private void FixedUpdate()
-	{
-		rb2d.MovePosition(transform.position - transform.up * speed * Time.fixedDeltaTime);
-	}
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		Player playerRef = collision.GetComponent<Player>();
-		if (playerRef != null)
+		if (other.CompareTag("Player"))
 		{
-			playerRef.health -= enemyDamage;
+			//make damage to player
+			PlayerManager.instance.playerHealth.value -= damage;
+			
 		}
-		Destroy(this.gameObject, timeToDestroyBullet);
 	}
+	
 }

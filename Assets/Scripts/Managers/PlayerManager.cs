@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Game.Player
 {
-	public class PlayerManager : MonoBehaviour
+	public class PlayerManager : MonoBehaviour, IHealth
 	{
 		public static PlayerManager instance;
-		[SerializeField] FloatSO _playerHealth;
+		[SerializeField] public FloatSO playerHealth;
 		#region Singleton and Awake
 		private void Awake()
 		{
@@ -27,7 +27,7 @@ namespace Game.Player
 			EventManager.instance.normalShootingEvent.AddListener(ShootingHandler);
 			EventManager.instance.specialShootingEvent.AddListener(ShootingHandler);
 
-			EventManager.instance.playerDamagedEvent.AddListener(TakeDamageHandler);
+			EventManager.instance.playerDamagedEvent.AddListener(TakeDamage);
 			EventManager.instance.playerCuredEvent.AddListener(IncreaseHealth);
 		}
 		private void OnDisable()
@@ -35,7 +35,7 @@ namespace Game.Player
 			EventManager.instance.normalShootingEvent.RemoveListener(ShootingHandler);
 			EventManager.instance.specialShootingEvent.RemoveListener(ShootingHandler);
 
-			EventManager.instance.playerDamagedEvent.RemoveListener(TakeDamageHandler);
+			EventManager.instance.playerDamagedEvent.RemoveListener(TakeDamage);
 			EventManager.instance.playerCuredEvent.RemoveListener(IncreaseHealth);
 		}
 
@@ -53,14 +53,24 @@ namespace Game.Player
 				}
 			}
 		}
-		public void TakeDamageHandler(float damage)
+		public void TakeDamage(float damage)
 		{
-			_playerHealth.value -= damage;
+			playerHealth.value -= damage;
+			Debug.Log("Player Damaged");
+			CheckDeath();
 		}
 
 		public void IncreaseHealth(float healthBooster)
 		{
-			_playerHealth.value += healthBooster;
+			playerHealth.value += healthBooster;
+		}
+
+		public void CheckDeath()
+		{
+			if (playerHealth.value <=0)
+			{
+				Debug.Log("Player Death");
+			}
 		}
 	}
 
