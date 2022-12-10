@@ -34,7 +34,9 @@ namespace Game.Player
 						if (_timeRate <= 0)
 						{
 							_timeRate = _maxTimeRate;
+
 							EventManager.instance.normalShootingEvent.Invoke(_bulletGens, _bullet);
+
 						}
 					}
 					break;
@@ -45,6 +47,8 @@ namespace Game.Player
 					{
 						_timeRate = _maxTimeRate;
 						EventManager.instance.normalShootingEvent.Invoke(_bulletGens, _bullet);
+
+
 					}
 					break;
 

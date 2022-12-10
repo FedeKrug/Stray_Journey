@@ -26,7 +26,13 @@ public class EventManager: MonoBehaviour
 
 	public HealthEvent playerDamagedEvent = new HealthEvent();
 	public HealthEvent playerCuredEvent = new HealthEvent();
+
+	public ShootPoolingEvent shootPoolingNormal = new ShootPoolingEvent();
+	public ShootPoolingEvent shootPoolingSpecial = new ShootPoolingEvent();
+
+	public ShootPoolingEvent enemyShootPoolingSpecial = new ShootPoolingEvent();
 }
 
 public class ShootEvent: UnityEvent <List<GameObject>, GameObject>{ } //1- de donde sale el disparo 2- cual es el disparo
 public class HealthEvent : UnityEvent<float> { } //la vida que se le da o quita al personaje
+public class ShootPoolingEvent : UnityEvent<List<GameObject>> { }

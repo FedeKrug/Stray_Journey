@@ -7,6 +7,7 @@ namespace Game.Player
 	{
 		public static PlayerManager instance;
 		[SerializeField] public FloatSO playerHealth;
+		[SerializeField] private BulletPool _objectPooling_Bullet;
 		#region Singleton and Awake
 		private void Awake()
 		{
@@ -27,6 +28,10 @@ namespace Game.Player
 			EventManager.instance.normalShootingEvent.AddListener(ShootingHandler);
 			EventManager.instance.specialShootingEvent.AddListener(ShootingHandler);
 
+			EventManager.instance.shootPoolingNormal.AddListener(ShootingPoolingHandler);
+			EventManager.instance.shootPoolingSpecial.AddListener(ShootingPoolingHandler);
+			
+
 			EventManager.instance.playerDamagedEvent.AddListener(TakeDamage);
 			EventManager.instance.playerCuredEvent.AddListener(IncreaseHealth);
 		}
@@ -37,6 +42,9 @@ namespace Game.Player
 
 			EventManager.instance.playerDamagedEvent.RemoveListener(TakeDamage);
 			EventManager.instance.playerCuredEvent.RemoveListener(IncreaseHealth);
+
+			EventManager.instance.shootPoolingNormal.RemoveListener(ShootingPoolingHandler);
+			EventManager.instance.shootPoolingSpecial.RemoveListener(ShootingPoolingHandler);
 		}
 
 		#endregion
@@ -48,6 +56,8 @@ namespace Game.Player
 				if (bullet)
 				{
 					GameObject _bullet = Instantiate(bullet, bulletGenerators[i].transform.position, bulletGenerators[i].transform.rotation);
+					//GameObject _bullet = BulletPool.instance.RequestBullets();
+					_bullet.transform.position = bulletGenerators[i].transform.position;
 					Debug.Log("Disparo");
 					//aplicar object pooling para mejor performance
 				}
@@ -67,11 +77,23 @@ namespace Game.Player
 
 		public void CheckDeath()
 		{
-			if (playerHealth.value <=0)
+			if (playerHealth.value <= 0)
 			{
 				Debug.Log("Player Death");
 			}
 		}
-	}
+		public void ShootingPoolingHandler(List<GameObject> bulletGens)
+		{
+			for (int i = 0; i < bulletGens.Count; i++)
+			{
 
+				GameObject _bullet = BulletPool.instance.RequestBullets();
+				_bullet.transform.position = bulletGens[i].transform.position;
+				_bullet.transform.rotation = bulletGens[i].transform.rotation;
+				Debug.Log("Disparo");
+				//aplicar object pooling para mejor performance
+
+			}
+		}
+	}
 }

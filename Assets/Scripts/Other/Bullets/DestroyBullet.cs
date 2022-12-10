@@ -18,14 +18,15 @@ public class DestroyBullet : MonoBehaviour
         _anim.SetTrigger("Explode"); //explosion
         _explosionASource.PlayOneShot(_explosionAudio);
         yield return new WaitForSeconds(_explosionTime);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         Debug.Log("BulletDestroyed");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy" || collision.tag == "Destroyer")
         {
-            Destroy(_bulletToDestroy);
+            //Destroy(_bulletToDestroy);
+            _bulletToDestroy.SetActive(false);
             StartCoroutine(DestroyBullets());
         }
     }
