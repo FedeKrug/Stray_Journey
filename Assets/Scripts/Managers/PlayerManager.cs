@@ -6,7 +6,7 @@ namespace Game.Player
 	public class PlayerManager : MonoBehaviour, IHealth
 	{
 		public static PlayerManager instance;
-		[SerializeField] public FloatSO playerHealth;
+		[SerializeField] private FloatSO _playerHealth;
 		[SerializeField] private BulletPool _objectPooling_Bullet;
 		#region Singleton and Awake
 		private void Awake()
@@ -59,25 +59,25 @@ namespace Game.Player
 					//GameObject _bullet = BulletPool.instance.RequestBullets();
 					_bullet.transform.position = bulletGenerators[i].transform.position;
 					Debug.Log("Disparo");
-					//aplicar object pooling para mejor performance
+					
 				}
 			}
 		}
 		public void TakeDamage(float damage)
 		{
-			playerHealth.value -= damage;
+			_playerHealth.value -= damage;
 			Debug.Log("Player Damaged");
 			CheckDeath();
 		}
 
 		public void IncreaseHealth(float healthBooster)
 		{
-			playerHealth.value += healthBooster;
+			_playerHealth.value += healthBooster;
 		}
 
 		public void CheckDeath()
 		{
-			if (playerHealth.value <= 0)
+			if (_playerHealth.value <= 0)
 			{
 				Debug.Log("Player Death");
 			}

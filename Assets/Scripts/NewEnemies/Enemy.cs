@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Game.Player;
 
 namespace Game.Enemies
 {
@@ -11,8 +11,13 @@ namespace Game.Enemies
 		[SerializeField,Range (0,10)] protected float idleDamage;
 		[SerializeField] protected EnemyHealth enemyLife;
 		public abstract void Death(EnemyHealth enemyHealth);
-		
+
+		protected void StaticDamage()
+		{
+			PlayerManager.instance.TakeDamage(idleDamage);
+		}
 	}
+
 
 	#region Interfaces
 	public interface IDamagable

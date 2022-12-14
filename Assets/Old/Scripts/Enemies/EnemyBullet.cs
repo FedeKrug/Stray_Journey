@@ -11,7 +11,7 @@ public class EnemyBullet : Bullet
 		if (other.CompareTag("Player"))
 		{
 			//make damage to player
-			PlayerManager.instance.playerHealth.value -= damage;
+			PlayerManager.instance.TakeDamage(damage);
 			
 		}
 	}
