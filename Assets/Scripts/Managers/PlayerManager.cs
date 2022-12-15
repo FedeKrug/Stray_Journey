@@ -7,6 +7,7 @@ namespace Game.Player
 	{
 		public static PlayerManager instance;
 		[SerializeField] private FloatSO _playerHealth;
+		[SerializeField] private PlayerDeath _playerDeathRef;
 		[SerializeField] private BulletPool _objectPooling_Bullet;
 		#region Singleton and Awake
 		private void Awake()
@@ -79,8 +80,14 @@ namespace Game.Player
 		{
 			if (_playerHealth.value <= 0)
 			{
+				_playerDeathRef.Die();
 				Debug.Log("Player Death");
 			}
+		}
+
+		IEnumerator Death()
+		{
+			yield return new WaitForSeconds(2);
 		}
 		public void ShootingPoolingHandler(List<GameObject> bulletGens)
 		{
@@ -95,5 +102,6 @@ namespace Game.Player
 
 			}
 		}
+
 	}
 }

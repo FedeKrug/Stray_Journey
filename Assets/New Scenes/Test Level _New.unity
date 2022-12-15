@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 130029668}
   - component: {fileID: 130029671}
   - component: {fileID: 130029673}
+  - component: {fileID: 130029674}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -514,6 +515,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.5349649}
   serializedVersion: 2
   m_Radius: 1.0319446
+--- !u!95 &130029674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130029667}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0aaa49d3debc4af4c9fe35a5cbe25d18, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &395768171
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,6 +685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 596068057}
   - component: {fileID: 596068058}
+  - component: {fileID: 596068059}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -699,7 +720,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 11400000, guid: 632e2c0b63c85194d815a2c565d527d1, type: 2}
+  _playerDeathRef: {fileID: 596068059}
   _objectPooling_Bullet: {fileID: 0}
+--- !u!114 &596068059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596068056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9eba7918a866e64a946dcdbd1dc6ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRef: {fileID: 1072224787}
+  _anim: {fileID: 130029674}
+  _deathAnim: Explosion1
+  _timeToDie: 2
 --- !u!1 &600273670
 GameObject:
   m_ObjectHideFlags: 0
