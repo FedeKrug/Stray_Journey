@@ -9,7 +9,7 @@ namespace Game.Enemies
 		[SerializeField] protected float movementSpeed;
 		[SerializeField] protected Transform playerRef;
 		public abstract void Move(Transform target);
-		public bool inAttackRange;
+		
 	}
 
 	

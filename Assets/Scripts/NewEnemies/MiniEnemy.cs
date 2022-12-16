@@ -4,13 +4,13 @@ using Game.Player;
 
 namespace Game.Enemies
 {
-	public class MiniEnemy : ActiveEnemy, IAttacks
+	public class MiniEnemy : ActiveEnemy
 	{
 		[SerializeField, Range(0, 5)] protected float remainingTime;
 		protected float timeRate;
 		[SerializeField] protected List<GameObject> bulletGens;
 		[SerializeField] protected GameObject bullet;
-
+		
 
 		private void Update()
 		{
@@ -20,10 +20,11 @@ namespace Game.Enemies
 				ConstantAttack();
 
 			}
-			//else
-			//{
-			//}
-			Move(playerRef);
+			if (playerDetected)
+			{
+				Move(playerRef);
+
+			}
 		}
 
 		private void ConstantAttack()
@@ -38,24 +39,13 @@ namespace Game.Enemies
 
 		public override void Move(Transform target)
 		{
-			//Vector3 newTarget = new Vector3(0,0, target.rotation.z - this.transform.transform.rotation.z);
-			//transform.LookAt(newTarget);
-			//transform.Rotate(target.rotation.z, this.transform.rotation.y, this.transform.rotation.x);
-			//buscar como mover al enemigo para ver al player usando vectores
-			//moverse
-			//persigue al player constantemente.
-			//Debug.Log("Mini Enemy Moving...");
+			LookAtTarget(target);
+			transform.position = Vector2.MoveTowards(transform.position, target.position, movementSpeed * Time.deltaTime);
 		}
 
-		public void Attack()
+		protected virtual void LookAtTarget(Transform target)
 		{
-			EventManager.instance.enemyShootingEvent.Invoke(bulletGens, bullet); //esto funcionaria para las turret
-		     //determinar una zona de ataque									 //Attack - disparos cuando esta el player esta en zona.
-		}
-
-		public void SpecialAttack()
-		{
-			//Special Attack - un ataque kamikaze.
+			this.transform.up = transform.position - target.position;
 		}
 
 		private void OnTriggerEnter2D(Collider2D collision)
@@ -63,12 +53,27 @@ namespace Game.Enemies
 			if (collision.CompareTag("Player"))
 			{
 				StaticDamage();
+				
 			}
 		}
-		[ContextMenu("Death")]
+		
 		public override void Death(EnemyHealth enemyHealth)
 		{
 			Debug.Log("Mini Enemy Dead");
+		}
+
+		
+
+		protected override void Attack()
+		{
+			EventManager.instance.enemyShootingEvent.Invoke(bulletGens, bullet); //esto funcionaria para las turret
+			//determinar una zona de ataque
+			//Attack - disparos cuando esta el player esta en zona.
+		}
+
+		protected override void SpecialAttack()
+		{
+			//Special Attack - un ataque kamikaze.
 		}
 	}
 }

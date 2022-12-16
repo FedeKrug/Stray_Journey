@@ -19,6 +19,7 @@ public class EventManager: MonoBehaviour
 		}
 	}
 	#endregion
+
 	public ShootEvent normalShootingEvent = new ShootEvent();
 	public ShootEvent specialShootingEvent = new ShootEvent();
 
