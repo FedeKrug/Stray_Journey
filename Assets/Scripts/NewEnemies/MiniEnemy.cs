@@ -53,7 +53,10 @@ namespace Game.Enemies
 			if (collision.CompareTag("Player"))
 			{
 				StaticDamage();
-				
+				if (inSpecial)
+				{
+					StartCoroutine(ChargingSpecial());
+				}
 			}
 		}
 		
@@ -66,7 +69,7 @@ namespace Game.Enemies
 
 		protected override void Attack()
 		{
-			EventManager.instance.enemyShootingEvent.Invoke(bulletGens, bullet); //esto funcionaria para las turret
+			EventManager.instance.enemyShootingEvent.Invoke(bulletGens, bullet);
 			//determinar una zona de ataque
 			//Attack - disparos cuando esta el player esta en zona.
 		}
@@ -74,6 +77,9 @@ namespace Game.Enemies
 		protected override void SpecialAttack()
 		{
 			//Special Attack - un ataque kamikaze.
+			//Explode
 		}
+
+
 	}
 }

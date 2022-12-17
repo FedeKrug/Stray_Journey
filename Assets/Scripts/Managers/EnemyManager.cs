@@ -42,7 +42,7 @@ public class EnemyManager : MonoBehaviour, IHealth
 			{
 				GameObject _bullet = Instantiate(bullet,bulletGenerators[i].transform.position, bulletGenerators[i].transform.rotation);
 				Debug.Log("Disparo Enemigo");
-				//aplicar object pooling para mejor performance
+				
 			}
 		}
 	}

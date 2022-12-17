@@ -16,6 +16,7 @@ namespace Game.Player
 		void Update()
 		{
 			_timeRate -= Time.deltaTime;
+
 			#region ShootTypes with Enums
 			switch (_shootType)
 			{

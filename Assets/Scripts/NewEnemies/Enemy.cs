@@ -10,26 +10,52 @@ namespace Game.Enemies
 		
 		[SerializeField, Range(0, 10)] protected float idleDamage;
 		[SerializeField, Range(0, 10)] protected float timeToSpecial;
-		protected float idleTime = 0;
+		protected float idleTime;
 		[SerializeField] protected EnemyHealth enemyLife;
-		
-		
+		[SerializeField] protected EnemyRangeDetector rangeOfView;
+		protected bool inSpecial, specialReady;
+
+
+		private void Awake()
+		{
+			idleTime = timeToSpecial;
+		}
 		public bool inAttackRange, playerDetected;
 
 		public abstract void Death(EnemyHealth enemyHealth);
 		protected abstract void Attack();
 		protected abstract void SpecialAttack();
-
+		
 		protected void StaticDamage()
 		{
 			PlayerManager.instance.TakeDamage(idleDamage);
 		}
 
-		protected IEnumerator ChargeSpecial()
+		public virtual IEnumerator ChargingSpecial()
 		{
 			yield return new WaitForSeconds(timeToSpecial);
+			specialReady = true;
+			yield return null;
 			SpecialAttack();
 		}
+
+		//private void OnTriggerStay2D(Collider2D collision)
+		//{
+		//	if (collision.CompareTag("Player"))
+		//	{
+		//		StartCoroutine(ChargeSpecial());
+		//	}
+		//}
+		//private void OnTriggerExit2D(Collider2D collision)
+		//{
+		//	if (collision.CompareTag("Player"))
+		//	{
+		//		StopCoroutine(ChargeSpecial());
+		//		timeToSpecial = idleTime;
+		//		Debug.Log($"timeToSpecial :{timeToSpecial}, idleTime: {idleTime}");
+		//	}
+		//}
+
 	}
 
 

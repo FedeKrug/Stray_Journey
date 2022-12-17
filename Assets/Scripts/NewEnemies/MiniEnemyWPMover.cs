@@ -3,6 +3,8 @@ namespace Game.Enemies
 {
 	public class MiniEnemyWPMover : MiniEnemy
 	{
+		[SerializeField] protected Transform wpPoint;
+
 		private void Update()
 		{
 

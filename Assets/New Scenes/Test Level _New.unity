@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colliderDetector: {fileID: 2129705541}
+  timeToSpecial: 0
 --- !u!58 &33442590
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -534,6 +535,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &368571629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368571630}
+  m_Layer: 0
+  m_Name: BulletGenerator_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &368571630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368571629}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 842181171}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &395768171
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +768,7 @@ MonoBehaviour:
   _playerRef: {fileID: 1072224787}
   _anim: {fileID: 130029674}
   _deathAnim: Explosion1
-  _timeToDie: 2
+  _timeToDie: 1
 --- !u!1 &600273670
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,13 +949,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711024829}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.08715578, w: 0.9961947}
   m_LocalPosition: {x: -0.78, y: -1.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 842181171}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
 --- !u!1 &760498663
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1042,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 711024830}
-  - {fileID: 1783869247}
+  - {fileID: 1649928537}
+  - {fileID: 368571630}
   m_Father: {fileID: 1766494622}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1405,6 +1437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colliderDetector: {fileID: 1766494619}
+  timeToSpecial: 0
 --- !u!58 &1263154263
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1648,6 +1681,36 @@ Transform:
   m_Father: {fileID: 130029670}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1649928536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649928537}
+  m_Layer: 0
+  m_Name: BulletGenerator_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1649928537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649928536}
+  m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
+  m_LocalPosition: {x: 0.78, y: -1.51, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 842181171}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
 --- !u!1 &1719446524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,13 +1792,15 @@ MonoBehaviour:
   idleDamage: 3
   timeToSpecial: 0
   enemyLife: {fileID: 1766494621}
+  rangeOfView: {fileID: 1263154262}
   inAttackRange: 0
   playerDetected: 0
   speed: 50
   remainingTime: 0.3
   bulletGens:
   - {fileID: 711024829}
-  - {fileID: 1783869246}
+  - {fileID: 1649928536}
+  - {fileID: 368571629}
   bullet: {fileID: 8179019863832352123, guid: ee43d64ff86087342979021e79ebb56d, type: 3}
 --- !u!58 &1766494620
 CircleCollider2D:
@@ -1783,36 +1848,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -91.22}
---- !u!1 &1783869246
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1783869247}
-  m_Layer: 0
-  m_Name: BulletGenerator (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1783869247
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783869246}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: -1.48, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 842181171}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829297607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2191,6 +2226,7 @@ MonoBehaviour:
   idleDamage: 5
   timeToSpecial: 0
   enemyLife: {fileID: 2129705543}
+  rangeOfView: {fileID: 33442589}
   inAttackRange: 0
   playerDetected: 0
   movementSpeed: 5
