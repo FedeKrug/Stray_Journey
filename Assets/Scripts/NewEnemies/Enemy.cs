@@ -39,23 +39,6 @@ namespace Game.Enemies
 			SpecialAttack();
 		}
 
-		//private void OnTriggerStay2D(Collider2D collision)
-		//{
-		//	if (collision.CompareTag("Player"))
-		//	{
-		//		StartCoroutine(ChargeSpecial());
-		//	}
-		//}
-		//private void OnTriggerExit2D(Collider2D collision)
-		//{
-		//	if (collision.CompareTag("Player"))
-		//	{
-		//		StopCoroutine(ChargeSpecial());
-		//		timeToSpecial = idleTime;
-		//		Debug.Log($"timeToSpecial :{timeToSpecial}, idleTime: {idleTime}");
-		//	}
-		//}
-
 	}
 
 

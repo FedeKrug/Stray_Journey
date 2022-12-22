@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using TMPro;
 namespace Game.UI
 {
+
 	public class UIManager : MonoBehaviour
 	{
+        
         public List<Image> specialAttacks;
         private GameManager gameManager;
         [SerializeField] private TMP_Text scoreText;

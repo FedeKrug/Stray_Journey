@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Game.Player;
+
 
 namespace Game.Enemies
 {
@@ -10,7 +10,7 @@ namespace Game.Enemies
 		protected float timeRate;
 		[SerializeField] protected List<GameObject> bulletGens;
 		[SerializeField] protected GameObject bullet;
-		
+
 
 		private void Update()
 		{
@@ -59,13 +59,13 @@ namespace Game.Enemies
 				}
 			}
 		}
-		
+
 		public override void Death(EnemyHealth enemyHealth)
 		{
 			Debug.Log("Mini Enemy Dead");
 		}
 
-		
+
 
 		protected override void Attack()
 		{

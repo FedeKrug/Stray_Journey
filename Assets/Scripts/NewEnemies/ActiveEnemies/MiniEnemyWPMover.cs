@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 namespace Game.Enemies
 {
 	public class MiniEnemyWPMover : MiniEnemy
 	{
-		[SerializeField] protected Transform wpPoint;
+		[SerializeField] protected List<Transform> wpPoints;
 
 		private void Update()
 		{
